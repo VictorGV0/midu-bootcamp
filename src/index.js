@@ -7,62 +7,57 @@ import { useState } from 'react';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const Counter =(props)=>{
-  const [contadorValue,updateContador] = useState({
+const INITIAL_COUNTER = {
     left: 0,
     right:0,
-    clicks:0,
-    mensaje:"mensaje en el estado",
-  });
+    mensaje:"mensaje en el estado"
+}
+
+const Counter =(props)=>{
+  const [contador,setContador] = useState(INITIAL_COUNTER);
+
 
 const handleClickup= ()=>{
-  updateContador ({
-    ...contadorValue,
-    left: contadorValue.left + 1,
-    clicks: contadorValue.clicks + 1
+  setContador ({
+    ...contador,
+    left: contador.left + 1
   });
 }
 const handleClickdown= ()=>{
-  updateContador({
-    ...contadorValue,
-    right: contadorValue.right + 1,
-    clicks: contadorValue.clicks + 1
+  setContador({
+    ...contador,
+    right: contador.right + 1
   })
 }
 const handleClickreset= ()=>{
-  updateContador({
-    ...contadorValue,
-    right: contadorValue.right =0,
-    left: contadorValue.left =0,
-    clicks: contadorValue.clicks =0
-  })
+  setContador(INITIAL_COUNTER)
 }
 
-
-
-const isPar = contadorValue.right % 2 ===0;
-const msj = isPar ? 'PAR' : 'IMPAR'
-const isPari = contadorValue.left % 2 ===0;
-const msji = isPari ? 'PAR' : 'IMPAR'
+const isPar=(value)=>{
+  if (value % 2 ===0){
+    return true
+  }
+};
 
   return (
     <div>
       
-      {contadorValue.left}
+      {contador.left}
       <button onClick={handleClickup}>Izquierda</button>
-
-      
       <button onClick={handleClickdown}>Derecha</button>
-      {contadorValue.right}
+      {contador.right}
 
-      <p>El numero de la derecha es: {msj}</p>
-      <p>El numero de la Izquierda es: {msji}</p>
+      {contador.right===0 ?
+      '': <p>El numero de la derecha es: {isPar(contador.right) ? 'PAR' : 'IMPAR' }</p>}
+
+      {contador.left===0 ?
+      '': <p>El numero de la Izquierda es: {isPar(contador.left) ? 'PAR' : 'IMPAR' }</p>}
 
 
       <div>
       <button onClick={handleClickreset}>Reset</button>
-      <p>{contadorValue.mensaje}</p>
-      <p>Clicks Totales: {contadorValue.clicks}</p>
+      <p>{contador.mensaje}</p>
+      <p>Clicks Totales: {contador.right + contador.left}</p>
       </div>
 
     </div>

@@ -7,8 +7,7 @@ let LOADER = 'true'
 let EDIT = false
 let EDITDATA = {} 
 let ID = null
-let BtnText = "Crear Nuevo"
-
+let BtnText = "Guardar Nuevo"
 
 export const FormHeader = () => {
     return (
@@ -26,8 +25,8 @@ const {load, setLoad} = useContext(LoadContext)
 
 
     const handleClickEdit = () => {
-        document.getElementById("inputTitle").value = title;
-        document.getElementById("inputDescription").value = description;
+        document.getElementById("inputTitle").value  = title;
+        document.getElementById("inputDescription").value  = description;
         EDIT = true
         ID = id;
         BtnText = "Guardar"
@@ -59,26 +58,23 @@ const {load, setLoad} = useContext(LoadContext)
 
 export const FormCreate=()=>{
 
-const [dataForm,setDataToAdd] = useState({})
+const [dataForm,setDataForm] = useState({})
 const {load, setLoad} = useContext(LoadContext)
 
     const dataToAdd={
         titleValue: (e)=>{
-            setDataToAdd({...dataForm,
+            setDataForm({...dataForm,
                title: e.target.value}) },
     
         descriptionValue: (e)=>{
-            setDataToAdd({...dataForm,
+            setDataForm({...dataForm,
                 description: e.target.value}) }
     }
-    const handleSubmit=(e)=>{
-        e.preventDefault()
-        !EDIT ? 
-        PostData(dataForm).then(()=>{
-            LOADER = true
-            load ? setLoad(false) : setLoad(true)
-        }) 
-        : 
+    const clearInputs =()=>{ 
+        document.getElementById("inputTitle").value  = ''
+        document.getElementById("inputDescription").value  = '' }
+
+    const sendEdit =()=>{
         EDITDATA= {
             title: document.getElementById("inputTitle").value,
             description: document.getElementById("inputDescription").value}
@@ -87,19 +83,32 @@ const {load, setLoad} = useContext(LoadContext)
             LOADER = true
             EDIT = false
             load ? setLoad(false) : setLoad(true)
-            BtnText = "Crear Nuevo"
+            BtnText = "Guardar Nuevo"
         })
-
-        
     }
+
+    const handleSubmit=(e)=>{
+        e.preventDefault()
+        EDIT ? 
+        sendEdit()
+        :
+        PostData(dataForm).then(()=>{
+            LOADER = true
+            load ? setLoad(false) : setLoad(true)
+        }) 
+        
+                
+    }
+
 return(
-<>
+        <>
         <form className="post" onSubmit={handleSubmit}>
            <input type="text" name="" id="inputTitle" onChange={dataToAdd.titleValue} className="form-control" required="required" placeholder="Ingrese Nombre" title="Nombre"/><br/>
            <input type="text" name="" id="inputDescription" onChange={dataToAdd.descriptionValue} className="form-control" required="required" placeholder="Ingrese Apellido" title="Apellido"/><br/>
            <button>{BtnText}</button>
-           {EDIT? <button >Cancelar</button> : null}
+           {EDIT ? <button>Cancelar</button> : ''}
         </form>
+        {EDIT ? '' : <button onClick={clearInputs}>Borrar</button>}
         </>
     )
 }

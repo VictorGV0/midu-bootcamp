@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import './Form.css';
 import { useState } from 'react';
-import { DelData, EditData, GetData, LoadContext, PostData } from './Global';
+import { DelData, EditData, GetData, LoadContext, PostData } from '../services/Global';
 
 let LOADER = 'true'
 let EDIT = false
@@ -95,8 +95,8 @@ const {load, setLoad} = useContext(LoadContext)
 return(
 <>
         <form className="post" onSubmit={handleSubmit}>
-           <input type="text" name="" id="inputTitle" onChange={dataToAdd.titleValue} className="form-control" required="required" placeholder="ingrese nombre" title="Nombre"/><br/>
-           <input type="text" name="" id="inputDescription" onChange={dataToAdd.descriptionValue} className="form-control" required="required" placeholder="ingrese apellido" title="Apellido"/><br/>
+           <input type="text" name="" id="inputTitle" onChange={dataToAdd.titleValue} className="form-control" required="required" placeholder="Ingrese Nombre" title="Nombre"/><br/>
+           <input type="text" name="" id="inputDescription" onChange={dataToAdd.descriptionValue} className="form-control" required="required" placeholder="Ingrese Apellido" title="Apellido"/><br/>
            <button>{BtnText}</button>
            {EDIT? <button >Cancelar</button> : null}
         </form>
@@ -116,7 +116,7 @@ export const FormIndex = ()=>{
         
       }, [load]);
     return (
-        <>
+        <div className='Form-content'>
         <LoadContext.Provider value={{load, setLoad}} >
 
         <table className="default">
@@ -128,7 +128,7 @@ export const FormIndex = ()=>{
         {LOADER ? 'Cargando...': <FormCreate/>}
 
         </LoadContext.Provider>
-        </>
+        </div>
 
     )
 }

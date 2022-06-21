@@ -1,0 +1,14 @@
+.hiden {
+    visibility: hidden;
+}
+.Form-content {
+    background-color: #dfdfdf;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: #040404;
+    margin-bottom: 40px;
+    padding: 20px;
+  }

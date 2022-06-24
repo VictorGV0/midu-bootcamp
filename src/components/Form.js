@@ -57,6 +57,10 @@ const {load, setLoad} = useContext(LoadContext)
 };
 
 export const FormCreate=()=>{
+const FormInputs ={
+    title:  document.getElementById("inputTitle"),
+    description: document.getElementById("inputDescription")
+}
 
 const [dataForm,setDataForm] = useState({})
 const {load, setLoad} = useContext(LoadContext)
@@ -70,14 +74,14 @@ const {load, setLoad} = useContext(LoadContext)
             setDataForm({...dataForm,
                 description: e.target.value}) }
     }
-    const clearInputs =()=>{ 
-        document.getElementById("inputTitle").value  = ''
-        document.getElementById("inputDescription").value  = '' }
+    const clearInputs =()=>{
+        FormInputs.title.value= ''
+        FormInputs.description.value  = '' }
 
     const sendEdit =()=>{
         EDITDATA= {
-            title: document.getElementById("inputTitle").value,
-            description: document.getElementById("inputDescription").value}
+            title: FormInputs.title.value,
+            description: FormInputs.description.value}
 
         EditData(ID, EDITDATA).then(()=>{
             LOADER = true

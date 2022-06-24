@@ -32,7 +32,7 @@ export const LoadContext = createContext(null)
 
 const APIKEY = 'Lj8RZqne279PvDF3VV7M144kIhptULkZ&q'
 
-export const GetGif = ({keyword ='panda'} = {})=>{
+export const GetGif = ({keyword})=>{
 const ApiURL = `https://api.giphy.com/v1/gifs/search?api_key=${APIKEY}=${keyword}&limit=25&offset=0&rating=g&lang=en`
 return fetch(ApiURL)
         .then(res=> res.json())

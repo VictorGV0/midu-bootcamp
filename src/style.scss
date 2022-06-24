@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+}
+
+
+
+.Gif-App {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: center;
+}
+.Each_Gif{
+    position: relative;
+}
+.title{
+    position: absolute;
+    top: -15px;
+    font-size: small;
+    color: rgba(255, 255, 255, 0.815);
+    text-decoration: none;
+    cursor: pointer;
+    
+}
+.images {
+  margin: 20px;
+  height: 200px;
+
+    
+  }
+

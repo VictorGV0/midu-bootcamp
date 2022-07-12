@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Link } from 'wouter';
 import "./Navbar.css"
 
@@ -6,19 +5,6 @@ import "./Navbar.css"
 
 export function Navbar(){
 
-
-useEffect(()=>{
-    let nav = document.querySelector(".navigationWrapper")
-    let gifBody = document.querySelector(".gif_body")
-
-    nav.addEventListener("click", (e)=>{
-        if (e.target.getAttribute("id")==="gif") {
-            gifBody.classList.add("show")
-        }
-        else gifBody.classList.remove("show")
-    }
-    )
-},[])
 
     return (
         <div className="Nav">

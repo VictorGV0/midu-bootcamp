@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'wouter';
-import "../../components/Giphy.css"
-import { useGifs } from '../../hooks/useGifs';
-import { SearchGif } from './SearchGif';
+import { useLocation } from 'wouter';
+import "components/Giphy.css"
+import { useGifs } from 'hooks/useGifs';
+import { Lazytrending } from 'components/TrendingSearches';
+import { ListOfGifs } from 'components/ListOfGifs';
 
-const POPULAR_GIFS = ["Ecuador", "Chica Araña", "Toldo", "Ukrania", "Colombia", "Spain"]
 
 export function Gif(){
 
@@ -12,18 +12,23 @@ const [load, setLoad] =useState(false)
 const [keyword, setKeyword] = useState("")
 const [path, setPath] = useLocation()
 
-const {loading,gifs} = useGifs({keyword})
+const {gifs} = useGifs({keyword})
+const key = localStorage.getItem('lastKeyword')
 
     function handleSubmit (e){
         e.preventDefault()
-        setPath(`/gif/${keyword}`)
+        setPath(`/search/${keyword}`)
         setLoad(false)
         setKeyword("")
     }
 
     function handleChange(e){
         setKeyword(e.target.value)
+        
+
     }
+
+   
 
     return (
         <div className='gif_body'>
@@ -31,21 +36,23 @@ const {loading,gifs} = useGifs({keyword})
 
             
             <form onSubmit={handleSubmit}>
-                    <input type="text" className="form-control" onChange={handleChange} value={keyword} placeholder="busca tu gif aqui"/>
+                    <input type="text" className="form-control" onChange={handleChange} value={keyword} placeholder="busca tu gif aqui" required/>
                     <button>Buscar</button>
             </form>
-            <h3>Ultima Busqueda</h3>
-            <SearchGif params={gifs}/>
-           <div className='Gif_links'>
-           <h2>Los Gifs Mas Populares</h2>
-                <ul className="list-group">
-                    {POPULAR_GIFS.map((populargifs => (
-                        <li key={populargifs} >
-                            <Link to={`/gif/${populargifs}`}>{populargifs}</Link>
-                        </li>
-                    )))}         
-                </ul>
-           </div>
+
+            <section className='gif_app'>
+            <div className='main_gif'>
+                    <h3>Ultima Busqueda: "{decodeURI(key)}"</h3>
+                    <ListOfGifs gifs={gifs}/>
+                </div>
+
+
+                <div className='gif_links'>
+                    <Lazytrending/>
+                </div>
+            </section>
+           
+           
 
            
             

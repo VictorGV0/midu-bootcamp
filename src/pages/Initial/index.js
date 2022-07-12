@@ -1,5 +1,5 @@
-import Mensaje, {Descripcion} from '../../components/Mensaje.js'
-import { Counter } from '../../components/Counter';
+import Mensaje, {Descripcion} from 'components/Mensaje.js'
+import { Counter } from 'components/Counter';
 
 
 export function Initial() {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { Route } from 'wouter';
@@ -9,51 +9,44 @@ import { FormApi } from './pages/APICRUD';
 import { Gif } from './pages/Gif';
 import { SearchGif } from './pages/Gif/SearchGif';
 import { Detail } from './pages/Gif/Details';
+import { GifsContextProvider } from './context/GifsContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
 function App() {
 
-  useEffect(() => {
-    let gifBody = document.querySelector(".gif_body")
-  if (window.location.href.includes("gif")) {
-    console.log("works")
-    gifBody.classList.add("show")
-  }    
-  }, []);
-  
+
   
 
   return (
+
     <div className="App">
 
-      <Navbar/>
+      <Navbar />
 
       <Route component={Home}
-      path="/"/>
-            
+        path="/" />
+
       <Route component={Initial}
-      path="/initial"/>
+        path="/initial" />
 
       <Route component={FormApi}
-      path="/api"/>
+        path="/api" />
+      <GifsContextProvider>
+        <Route component={Gif}
+          path="/gif"
+        />
+        <Route component={Detail}
+          path="/detail/:id" />
 
-      <Gif/>
+        <Route component={SearchGif}
+          path="/search/:keyword" />
+      </GifsContextProvider>
 
-      <Route component={Detail}
-      path="/detail/:id"/>
-      
-      <Route component={SearchGif}
-      path="/gif/:keyword"/>
-            
     </div>
-    
   );
 }
-
-
-
 
 
 

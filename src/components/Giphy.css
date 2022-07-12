@@ -1,23 +1,55 @@
 .App {
     text-align: center;
+    height: 100%;
+
   }
- 
- .Gif-App{
-  background-color: #282c34;
-  display: flex;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  text-decoration: none;
- }
 
-
-.Gif_links {
-    text-align: left;
-    font-size: 20px;
-}
 .gif_body{
-  visibility: hidden;
+    background-color: #282c34;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    height: 100%;
+   }
+.gif_app{
+  display: flex;
+  flex-wrap: wrap;
+ }
+.main_gif{
+  min-height: 500px;
+  display: inline-flex;
+  flex-basis: 80%;
+  flex-wrap: wrap;
 }
-.show {
-  visibility: visible;
+.gif_links {
+  text-align: left;
+  font-size: 15px;
+  min-width: 278px;
+  margin-top: 30px;
+}
+a{
+  text-decoration: none;
+  color: white;
+}
+a:hover {
+  color: #56698f;
+}
+h3{
+  flex-basis: 100%;
+}
+
+
+@media (max-width: 420px) {
+  img.logo_giphy {
+    transform: scale(0.7);
+  }
+}
+@media (max-width: 358px) {
+  img.logo_giphy {
+    transform: scale(0.5);
+  }
+}
+@media (max-width: 396px) {
+  .navigation {
+    display: none;
+  }
 }

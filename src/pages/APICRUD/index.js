@@ -1,4 +1,4 @@
-import { FormIndex } from '../../components/Form';
+import { FormIndex } from 'components/Form';
 
 export function FormApi(){
     return (

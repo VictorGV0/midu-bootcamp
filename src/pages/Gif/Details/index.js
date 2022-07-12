@@ -1,6 +1,17 @@
+
+import Giphy from "components/Giphy"
+import { useGlobalGifs } from "hooks/useGlobalGifs"
+
 export function Detail ({params}){
-    console.log(params.id)
+    const gifs = useGlobalGifs()
+
+    const gif = gifs.find(singleGif => singleGif.id === params.id)
+
+    console.log(gif.gifFULL)
     return (
-        <h1>Gif con ID {params.id}</h1>
+        <Giphy 
+        title={gif.title}
+        url={gif.gifFULL}
+       />
     )
 }

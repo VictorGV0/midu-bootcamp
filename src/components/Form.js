@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import './Form.css';
 import { useState } from 'react';
-import { DelData, EditData, GetData, LoadContext, PostData } from '../services/Global';
+import { DelData, EditData, GetData, LoadContext, PostData } from 'services/Global';
 
 let LOADER = 'true'
 let EDIT = false
@@ -21,6 +21,7 @@ export const FormHeader = () => {
     )
 }
 export const FormData = ({ id, title, description }) => {
+
 const {load, setLoad} = useContext(LoadContext)
 
 
@@ -43,10 +44,11 @@ const {load, setLoad} = useContext(LoadContext)
 
     }
     return (
+        
         <><tbody>
             <tr className='postContent'>
-                <td className='title'>{title}</td>
-                <td className='description'>{description}</td>
+                <td className='name'>{title}</td>
+                <td className='lastname'>{description}</td>
                 <td>
                     <button id="editBtn" onClick={handleClickEdit}>Editar</button>
                     <button onClick={handleClickDelete}>Eliminar</button>
